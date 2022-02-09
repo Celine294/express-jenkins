@@ -13,5 +13,11 @@ pipeline {
                 bat 'docker compose up --abort-on-container-exit'
             }
         }
+
+        stage('success') {
+            steps {
+                bat 'echo SUCCESS'
+            }
+        }
     }
 }
