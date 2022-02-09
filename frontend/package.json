@@ -1,0 +1,11 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "http-server": "14.1.0"
+  },
+  "scripts": {
+    "start": "http-server -a localhost -p 3210"
+  }
+}
