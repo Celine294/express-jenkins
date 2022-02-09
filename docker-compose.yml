@@ -1,9 +1,15 @@
 services:
-  frontend:
-    build: frontend
-    ports:
-      - "3210:3210"
   backend:
-    build: backend
+    build: "backend"
     ports:
       - "3000:3000"
+  frontend:
+    build: "frontend"
+    ports:
+      - "3210:3210"
+    depends_on:
+      - "backend"
+  tests:
+    build: "tests"
+    depends_on:
+      - "backend"

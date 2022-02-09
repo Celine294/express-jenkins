@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 # Install app dependencies
-RUN npm install
+RUN npm ci
 
 EXPOSE 3000
 CMD [ "npm", "run", "start" ]
