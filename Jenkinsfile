@@ -10,7 +10,7 @@ pipeline {
         
         stage('docker compose up') {
             steps {
-                bat 'docker compose up -d'
+                bat 'docker compose up --abort-on-container-exit'
             }
         }
     }
