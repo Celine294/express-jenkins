@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['github_credentials']) {
                     bat 'git checkout release || git checkout -b release'
-                    bat 'git rebase dev'
+                    bat 'git rebase origin/dev'
                     bat 'git push origin release'
                 }
             }
