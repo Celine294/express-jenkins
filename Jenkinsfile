@@ -16,7 +16,7 @@ pipeline {
 
         stage('push to release') {
             steps {
-                withCredentials([gitUsernamePassword(credentialsId: 'github_id', gitToolName: 'git-tool')]) {
+                sshagent('github_credentials') {
                     bat 'git checkout release || git checkout -b release'
                     bat 'git push --verbose origin release'
                 }
