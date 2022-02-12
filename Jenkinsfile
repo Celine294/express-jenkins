@@ -20,7 +20,10 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'github_credentials', keyFileVariable: 'SSH_KEY')]) {
                     bat 'git checkout release || git checkout -b release'
-                    bat 'git push --verbose origin release'
+                    bat '''
+                        GIT_SSH_COMMAND = "ssh -i $SSH_KEY"
+                        git push --verbose origin release'
+                    '''
                 }
             }
         }
