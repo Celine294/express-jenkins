@@ -16,8 +16,10 @@ pipeline {
 
         stage('push to release') {
             steps {
-                bat 'git checkout release || git checkout -b release'
-                bat 'git push --verbose origin release'
+                withCredentials([gitUsernamePassword(credentialsId: 'github_id', gitToolName: 'git-tool')]) {
+                    bat 'git checkout release || git checkout -b release'
+                    bat 'git push --verbose origin release'
+                }
             }
         }
 
