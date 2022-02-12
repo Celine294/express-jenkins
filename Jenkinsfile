@@ -16,8 +16,7 @@ pipeline {
 
         stage('push to release') {
             steps {
-                bat 'git branch release'
-                bat 'git switch release'
+                bat 'git checkout release || git checkout -b release'
                 bat 'git push --verbose origin release'
             }
         }
