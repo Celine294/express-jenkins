@@ -18,9 +18,10 @@ pipeline {
 
         stage('push to release') {
             steps {
-                bat 'git checkout release || git checkout -b release'
-                bat 'git remote set-url origin https://${PAT}@github.com/Celine294/express-jenkins.git'
-                bat 'git push --verbose origin release'
+                withCredentials([sshUserPrivateKey(credentialsId: 'github_credentials', keyFileVariable: 'SSH_KEY')]) {
+                    bat 'git checkout release || git checkout -b release'
+                    bat 'git push --verbose origin release'
+                }
             }
         }
 
