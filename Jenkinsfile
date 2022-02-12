@@ -19,6 +19,7 @@ pipeline {
                 sshagent(credentials: ['github_credentials']) {
                     bat 'git checkout release || git checkout -b release'
                     bat 'git merge origin/release'
+                    bat 'git push origin release'
                 }
             }
         }
