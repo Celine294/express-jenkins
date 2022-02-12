@@ -22,7 +22,7 @@ pipeline {
                     bat 'git checkout release || git checkout -b release'
                     bat '''
                         SET GIT_SSH_COMMAND="ssh -i $SSH_KEY"
-                        git push --verbose origin release'
+                        git push --verbose origin release
                     '''
                 }
             }
