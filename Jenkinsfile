@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('docker compose build') {
             steps {
@@ -16,7 +16,7 @@ pipeline {
 
         stage('push to release') {
             steps {
-                sshagent('github_credentials') {
+                sshagent(credentials: ['github_credentials']) {
                     bat 'git checkout release || git checkout -b release'
                     bat 'git push --verbose origin release'
                 }
