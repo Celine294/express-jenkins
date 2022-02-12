@@ -16,7 +16,8 @@ pipeline {
 
         stage('success') {
             steps {
-                bat 'echo SUCCESS'
+                bat 'git checkout -b release'
+                bat 'git push -u origin release'
             }
         }
     }
