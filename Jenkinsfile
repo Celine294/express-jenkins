@@ -14,18 +14,9 @@ pipeline {
             }
         }
 
-        stage('push to release') {
-            steps {
-                sshagent(credentials: ['github_credentials']) {
-                    bat 'git checkout release || git checkout -b release'
-                    bat 'git push --verbose origin release'
-                }
-            }
-        }
-
         stage('success') {
             steps {
-                bat 'echo SUCCESS'
+                bat 'echo SUCCESS. Merging into release branch.'
             }
         }
     }
