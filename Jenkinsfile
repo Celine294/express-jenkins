@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PAT = credentials('PAT')
+        SSH_KEY = credentials('ssh_path')
     }
     stages {
         stage('docker compose build') {
@@ -18,13 +18,11 @@ pipeline {
 
         stage('push to release') {
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'github_credentials', keyFileVariable: 'SSH_KEY')]) {
-                    bat 'git checkout release || git checkout -b release'
-                    bat '''
-                        SET GIT_SSH_COMMAND="ssh -i $SSH_KEY"
-                        git push --verbose origin release
-                    '''
-                }
+                bat '''
+                    git checkout release || git checkout -b release
+                    SET GIT_SSH_COMMAND="ssh -i $SSH_KEY"
+                    git push --verbose origin release
+                '''
             }
         }
 
