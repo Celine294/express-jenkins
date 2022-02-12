@@ -18,7 +18,7 @@ pipeline {
             steps {
                 bat 'git branch release'
                 bat 'git switch release'
-                bat 'git push origin release'
+                bat 'git push --verbose origin release'
             }
         }
 
