@@ -14,10 +14,17 @@ pipeline {
             }
         }
 
+        stage('push to release') {
+            steps {
+                bat 'git branch release'
+                bat 'git switch release'
+                bat 'git push origin release'
+            }
+        }
+
         stage('success') {
             steps {
-                bat 'git checkout -b release'
-                bat 'git push -u origin release'
+                bat 'echo SUCCESS'
             }
         }
     }
